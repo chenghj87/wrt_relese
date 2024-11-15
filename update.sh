@@ -203,7 +203,7 @@ remove_affinity_script() {
 
 fix_build_for_openssl() {
     local makefile="$BUILD_DIR/package/libs/openssl/Makefile"
-    
+
     if [[ -f "$makefile" ]]; then
         if ! grep -qP "^CONFIG_OPENSSL_SSL3" "$makefile"; then
             sed -i '/^ifndef CONFIG_OPENSSL_SSL3/i CONFIG_OPENSSL_SSL3 := y' "$makefile"
