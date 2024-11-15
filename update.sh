@@ -49,7 +49,7 @@ reset_feeds_conf() {
 update_feeds() {
     sed -i '/^#/d' $BUILD_DIR/$FEEDS_CONF
     if ! grep -q "small-package" $BUILD_DIR/$FEEDS_CONF; then
-        echo "src-git small8 https://github.com/kenzok8/small-package" >>$BUILD_DIR/$FEEDS_CONF
+        echo "src-git small8 https://github.com/kenzok8/small-package;depth=1" >>$BUILD_DIR/$FEEDS_CONF
     fi
     ./scripts/feeds clean
     ./scripts/feeds update -a
