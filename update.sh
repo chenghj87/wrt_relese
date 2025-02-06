@@ -333,8 +333,8 @@ chanage_cpuusage() {
         rm -f "$imm_script1"
     fi
 
-    install -Dm755 "$BASE_PATH/patches/cpuusage" "$BUILD_DIR/target/linux/qualcommax/ipq60xx/base-files/sbin/cpuusage"
-    install -Dm755 "$BASE_PATH/patches/cpuusage" "$BUILD_DIR/target/linux/qualcommax/ipq807x/base-files/sbin/cpuusage"
+    install -Dm755 "$BASE_PATH/patches/cpuusage" "$BUILD_DIR/target/linux/qualcommax/base-files/sbin/cpuusage"
+    install -Dm755 "$BASE_PATH/patches/hnatusage" "$BUILD_DIR/target/linux/mediatek/filogic/base-files/sbin/cpuusage"
 }
 
 update_tcping() {
@@ -393,10 +393,6 @@ update_pw_ha_chk() {
     local ha_lua_path="$pw_share_dir/haproxy.lua"
     local smartdns_lua_path="$pw_share_dir/helper_smartdns_add.lua"
     local rules_dir="$pw_share_dir/rules"
-
-    # 删除旧的 haproxy_check.sh 文件并安装新的
-    [ -f "$pw_ha_path" ] && rm -f "$pw_ha_path"
-    install -Dm755 "$new_path" "$pw_ha_path"
 
     # 修改 haproxy.lua 文件中的 rise 和 fall 参数
     [ -f "$ha_lua_path" ] && sed -i 's/rise 1 fall 3/rise 3 fall 2/g' "$ha_lua_path"
